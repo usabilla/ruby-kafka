@@ -30,9 +30,6 @@ module Kafka
     SOCKET_TIMEOUT = 10
     CONNECT_TIMEOUT = 10
 
-    # Time after which an idle connection will be reopened.
-    IDLE_TIMEOUT = 60 * 5
-
     attr_reader :encoder
     attr_reader :decoder
 
@@ -145,7 +142,7 @@ module Kafka
     end
 
     def idle?
-      @last_request && @last_request < Time.now - IDLE_TIMEOUT
+      false
     end
 
     # Writes a request over the connection.
